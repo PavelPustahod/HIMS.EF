@@ -46,6 +46,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SampleEntriesAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="isAdmin" Type="bit" Mode="In" />
+          <Parameter Name="result" Type="int" Mode="InOut" />
+        </Function>
         <EntityContainer Name="HIMSModelStoreContainer">
           <EntitySet Name="Direction" EntityType="Self.Direction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
@@ -85,6 +89,10 @@
             <End Role="Direction" EntitySet="Directions" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <FunctionImport Name="SampleEntriesAmount">
+            <Parameter Name="isAdmin" Mode="In" Type="Boolean" />
+            <Parameter Name="result" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="Direction">
           <Key>
@@ -144,6 +152,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SampleEntriesAmount" FunctionName="HIMSModel.Store.SampleEntriesAmount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,8 @@ namespace HIMS.EF.DAL.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class HIMSDbContext : DbContext
     {
@@ -27,5 +29,14 @@ namespace HIMS.EF.DAL.Data
     
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Direction> Directions { get; set; }
+    
+        public virtual int SampleEntriesAmount(Nullable<bool> isAdmin, ObjectParameter result)
+        {
+            var isAdminParameter = isAdmin.HasValue ?
+                new ObjectParameter("isAdmin", isAdmin) :
+                new ObjectParameter("isAdmin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SampleEntriesAmount", isAdminParameter, result);
+        }
     }
 }
