@@ -29,6 +29,8 @@ namespace HIMS.EF.DAL.Data
     
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Direction> Directions { get; set; }
+        public virtual DbSet<Sample> Samples { get; set; }
+        public virtual DbSet<UserTask> UserTasks { get; set; }
     
         public virtual int SampleEntriesAmount(Nullable<bool> isAdmin, ObjectParameter result)
         {

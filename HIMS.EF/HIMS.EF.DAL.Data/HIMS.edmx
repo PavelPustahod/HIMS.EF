@@ -13,6 +13,14 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sample">
+          <Key>
+            <PropertyRef Name="SampleId" />
+          </Key>
+          <Property Name="SampleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
@@ -32,6 +40,15 @@
           <Property Name="Skype" Type="varchar" MaxLength="50" />
           <Property Name="StartDate" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserTask">
+          <Key>
+            <PropertyRef Name="UserTaskId" />
+          </Key>
+          <Property Name="UserTaskId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="StateId" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Direction_To_UserProfile">
           <End Role="Direction" Type="Self.Direction" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -46,16 +63,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserTask_To_UserProfile">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserTask" Type="Self.UserTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserTask">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="SampleEntriesAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="isAdmin" Type="bit" Mode="In" />
           <Parameter Name="result" Type="int" Mode="InOut" />
         </Function>
         <EntityContainer Name="HIMSModelStoreContainer">
           <EntitySet Name="Direction" EntityType="Self.Direction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sample" EntityType="Self.Sample" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTask" EntityType="Self.UserTask" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Direction_To_UserProfile" Association="Self.FK_Direction_To_UserProfile">
             <End Role="Direction" EntitySet="Direction" />
             <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTask_To_UserProfile" Association="Self.FK_UserTask_To_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserTask" EntitySet="UserTask" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -81,6 +118,7 @@
           <Property Name="Skype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Direction" Relationship="HIMSModel.FK_Direction_To_UserProfile" FromRole="UserProfile" ToRole="Direction" />
+          <NavigationProperty Name="UserTasks" Relationship="HIMSModel.FK_UserTask_To_UserProfile" FromRole="UserProfile" ToRole="UserTask" />
         </EntityType>
         <EntityContainer Name="HIMSDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
@@ -93,6 +131,12 @@
             <Parameter Name="isAdmin" Mode="In" Type="Boolean" />
             <Parameter Name="result" Mode="InOut" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Samples" EntityType="HIMSModel.Sample" />
+          <EntitySet Name="UserTasks" EntityType="HIMSModel.UserTask" />
+          <AssociationSet Name="FK_UserTask_To_UserProfile" Association="HIMSModel.FK_UserTask_To_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="UserTask" EntitySet="UserTasks" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Direction">
           <Key>
@@ -114,6 +158,38 @@
             </Principal>
             <Dependent Role="UserProfile">
               <PropertyRef Name="DirectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Sample">
+          <Key>
+            <PropertyRef Name="SampleId" />
+          </Key>
+          <Property Name="SampleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserTask">
+          <Key>
+            <PropertyRef Name="UserTaskId" />
+          </Key>
+          <Property Name="UserTaskId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="StateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="HIMSModel.FK_UserTask_To_UserProfile" FromRole="UserTask" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_UserTask_To_UserProfile">
+          <End Type="HIMSModel.UserProfile" Role="UserProfile" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="HIMSModel.UserTask" Role="UserTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserTask">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -153,6 +229,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SampleEntriesAmount" FunctionName="HIMSModel.Store.SampleEntriesAmount" />
+          <EntitySetMapping Name="Samples">
+            <EntityTypeMapping TypeName="HIMSModel.Sample">
+              <MappingFragment StoreEntitySet="Sample">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SampleId" ColumnName="SampleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTasks">
+            <EntityTypeMapping TypeName="HIMSModel.UserTask">
+              <MappingFragment StoreEntitySet="UserTask">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="UserTaskId" ColumnName="UserTaskId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

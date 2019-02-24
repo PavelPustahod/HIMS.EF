@@ -14,6 +14,12 @@ namespace HIMS.EF.DAL.Data
     
     public partial class UserProfile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserProfile()
+        {
+            this.UserTasks = new HashSet<UserTask>();
+        }
+    
         public int UserId { get; set; }
         public int DirectionId { get; set; }
         public string Name { get; set; }
@@ -30,5 +36,7 @@ namespace HIMS.EF.DAL.Data
         public System.DateTime StartDate { get; set; }
     
         public virtual Direction Direction { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserTask> UserTasks { get; set; }
     }
 }
