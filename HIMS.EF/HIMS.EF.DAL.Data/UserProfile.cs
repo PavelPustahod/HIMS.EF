@@ -28,5 +28,7 @@ namespace HIMS.EF.DAL.Data
         public string MobilePhone { get; set; }
         public string Skype { get; set; }
         public System.DateTime StartDate { get; set; }
+    
+        public virtual Direction Direction { get; set; }
     }
 }

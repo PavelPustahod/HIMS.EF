@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="234c0f6063864e73b1f15cba39b9f8b9" Name="Diagram1">
         <EntityTypeShape EntityType="HIMSModel.UserProfile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HIMSModel.Direction" Width="1.5" PointX="3.25" PointY="2" />
+        <AssociationConnector Association="HIMSModel.FK_Direction_To_UserProfile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

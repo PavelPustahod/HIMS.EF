@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Direction.cs">
+      <DependentUpon>HIMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="HIMS.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -12,19 +12,20 @@ namespace HIMS.EF.DAL.Data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class HIMSDbContext : DbContext
     {
         public HIMSDbContext()
-            : base("name=HIMSDbConnection")
+            : base("name=HIMSDbContext")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<Direction> Directions { get; set; }
     }
 }
