@@ -77,6 +77,9 @@
     <Compile Include="UserTask.cs">
       <DependentUpon>HIMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="vUserProfile.cs">
+      <DependentUpon>HIMS.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interfaces\" />
