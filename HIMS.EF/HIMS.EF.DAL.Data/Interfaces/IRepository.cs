@@ -15,6 +15,5 @@ namespace HIMS.EF.DAL.Data
 
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Func<T, Boolean> predicate);
-
     }
 }

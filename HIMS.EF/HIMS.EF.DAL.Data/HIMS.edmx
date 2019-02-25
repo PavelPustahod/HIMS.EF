@@ -54,6 +54,14 @@ warning 6002: The table/view 'HIMS.dbo.vUserProfile' does not have a primary key
         <EntityType Name="vUserProfile">
           <Key>
             <PropertyRef Name="UserId" />
+            
+            
+            
+            
+            
+            
+            
+            
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="51" Nullable="false" />

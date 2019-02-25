@@ -2,6 +2,7 @@
 using HIMS.BL.Interfaces;
 using HIMS.BL.Models;
 using HIMS.Server.Models;
+using HIMS.Server.utils;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -28,7 +29,7 @@ namespace HIMS.Server.Controllers
             var samples = new SamplesListViewModel
             {
                 Samples = Mapper.Map<IEnumerable<SampleDTO>, List<SampleViewModel>>(sampleDtos),
-                //SamplesAmount = _sampleService.GetSampleEntriesAmout(CurrentUser.IsAdmin)
+                SamplesAmount = _sampleService.GetSampleEntriesAmout(CurrentUser.IsAdmin)
             };
 
             return View(samples);

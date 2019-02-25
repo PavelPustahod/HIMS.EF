@@ -8,26 +8,19 @@ namespace HIMS.EF.DAL.Data.Repositories
 {
     public class EFUnitOfWork : IUnitOfWork
     {
-        private HIMSDbContext db;
+        private readonly HIMSDbContext _himsDbContext;
         private SampleRepository _sampleRepository;
 
         public EFUnitOfWork(string connectionString)
         {
-            db = new HIMSDbContext(connectionString);
+            this._himsDbContext = new HIMSDbContext(connectionString);
         }
-        public IRepository<Sample> Samples
-        {
-            get
-            {
-                if (_sampleRepository == null)
-                    _sampleRepository = new SampleRepository(db);
-                return _sampleRepository;
-            }
-        }
+
+        public IRepository<Sample> Samples => _sampleRepository ?? new SampleRepository(_himsDbContext);
 
         public void Save()
         {
-            db.SaveChanges();
+            _himsDbContext.SaveChanges();
         }
 
         private bool disposed = false;
@@ -38,8 +31,10 @@ namespace HIMS.EF.DAL.Data.Repositories
             {
                 if (disposing)
                 {
-                    db.Dispose();
+                    //Release managed resources
+                    _himsDbContext.Dispose();
                 }
+                //release unmanaged resources
                 this.disposed = true;
             }
         }

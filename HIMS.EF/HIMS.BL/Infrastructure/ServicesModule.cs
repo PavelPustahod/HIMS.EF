@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 
 namespace HIMS.BL.Infrastructure
 {
-    class ServicesModule : NinjectModule
+    public class ServicesModule : NinjectModule
     {
-        private string _connectionString;
-        private string _identityConnectionString;
-        public ServicesModule(string connection, string identityConnection)
+        private readonly string _connectionString;
+        private readonly string _identityConnectionString;
+
+        public ServicesModule(string connectionString, string identityConnectionString)
         {
-            _connectionString = connection;
-            _identityConnectionString = identityConnection;
+            _connectionString = connectionString;
+            _identityConnectionString = identityConnectionString;
         }
 
         public override void Load()

@@ -12,25 +12,21 @@ namespace HIMS.EF.DAL.Identity.Repositories
 {
     public class IdentityUnitOfWork : Interfaces.IUnitOfWork
     {
-        private readonly IdentityContext _db;
+        private readonly IdentityContext _identityDbContext;
 
-        private readonly ApplicationRoleManager _applicationManager;
-        private readonly UserSecurityManager _userSecurityManager;
+        public ApplicationRoleManager ApplicationRoleManager { get; }
+        public ApplicationUserManager UserSecurityManager { get; }
 
         public IdentityUnitOfWork(string connectionString)
         {
-            _db = new IdentityContext(connectionString);
-            _applicationManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(_db));
-            _userSecurityManager = new UserSecurityManager(new UserStore<ApplicationUser>(_db));
+            _identityDbContext = new IdentityContext(connectionString);
+            ApplicationRoleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(_identityDbContext));
+            UserSecurityManager = new ApplicationUserManager(new UserStore<ApplicationUser>(_identityDbContext));
         }
-
-        public ApplicationRoleManager ApplicationRoleManager => _applicationManager;
-
-        public UserSecurityManager UserSecurityManager => _userSecurityManager;
 
         public async Task SaveAsync()
         {
-            await _db.SaveChangesAsync().ConfigureAwait(false);
+            await _identityDbContext.SaveChangesAsync().ConfigureAwait(false);
         }
 
         private bool disposed = false;
@@ -47,12 +43,14 @@ namespace HIMS.EF.DAL.Identity.Repositories
             {
                 if (disposing)
                 {
-                    _db.Dispose();
-                    _applicationManager.Dispose();
-                    _userSecurityManager.Dispose();
+                    //release managed resources
+                    _identityDbContext.Dispose();
+                    ApplicationRoleManager.Dispose();
+                    UserSecurityManager.Dispose();
                 }
+                //relesae unmanaged resources
+                this.disposed = true;
             }
-            this.disposed = true;
         }
     }
 }

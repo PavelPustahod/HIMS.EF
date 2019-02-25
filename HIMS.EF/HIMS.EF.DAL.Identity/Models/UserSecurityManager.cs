@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HIMS.EF.DAL.Identity.Models
 {
-    public class UserSecurityManager : UserManager<ApplicationUser>
+    public class ApplicationUserManager : UserManager<ApplicationUser>
     {
-        public UserSecurityManager(IUserStore<ApplicationUser> store) : base(store)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store) : base(store)
         {
         }
     }

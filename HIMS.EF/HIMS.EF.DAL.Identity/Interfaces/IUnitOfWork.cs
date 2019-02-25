@@ -10,7 +10,7 @@ namespace HIMS.EF.DAL.Identity.Interfaces
     public interface IUnitOfWork : IDisposable
     {
         ApplicationRoleManager ApplicationRoleManager { get; }
-        UserSecurityManager UserSecurityManager { get; }
+        ApplicationUserManager UserSecurityManager { get; }
         Task SaveAsync();
     }
 }

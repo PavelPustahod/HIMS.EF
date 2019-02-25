@@ -9,45 +9,45 @@ namespace HIMS.EF.DAL.Data.Repositories
 {
     public class SampleRepository : IRepository<Sample>
     {
-        private readonly HIMSDbContext _dbContext;
+        private readonly HIMSDbContext _himsDbContext;
 
-        public SampleRepository(HIMSDbContext dbContext)
+        public SampleRepository(HIMSDbContext himsDbContext)
         {
-            _dbContext = dbContext;
+            _himsDbContext = himsDbContext;
         }
 
         public void Create(Sample item)
         {
-            _dbContext.Samples.Add(item);
+            _himsDbContext.Samples.Add(item);
         }
 
         public void Delete(int id)
         {
-            var entity = _dbContext.Samples.Find(id);
+            var entity = _himsDbContext.Samples.Find(id);
             if (entity != null)
             {
-                _dbContext.Samples.Remove(entity);
+                _himsDbContext.Samples.Remove(entity);
             }
         }
 
         public IEnumerable<Sample> Find(Func<Sample, bool> predicate)
         {
-            return _dbContext.Samples.Where(predicate).ToList();
+            return _himsDbContext.Samples.Where(predicate).ToList();
         }
 
         public Sample Get(int id)
         {
-            return _dbContext.Samples.Find(id);
+            return _himsDbContext.Samples.Find(id);
         }
 
         public IEnumerable<Sample> GetAll()
         {
-            return _dbContext.Samples.ToList();
+            return _himsDbContext.Samples;
         }
 
         public void Update(Sample item)
         {
-            _dbContext.Entry(item).State = EntityState.Modified;
+            _himsDbContext.Entry(item).State = EntityState.Modified;
         }
     }
 }

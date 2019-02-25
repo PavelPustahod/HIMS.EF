@@ -15,7 +15,7 @@ namespace HIMS.Server.Controllers
 {
     public class AccountController : Controller
     {
-        IUserService _userService;
+        private readonly IUserService _userService;
 
         public AccountController(IUserService userService)
         {
@@ -33,11 +33,11 @@ namespace HIMS.Server.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel viewModel)
         {
-            await SetInitialDataAsync();
+            await SetInitialDataAsync().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
                 var userDto = new UserDTO { Email = viewModel.Email, Password = viewModel.Password };
-                ClaimsIdentity claim = await _userService.Authenticate(userDto);
+                ClaimsIdentity claim = await _userService.Authenticate(userDto).ConfigureAwait(false);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Invalid login or password.");
@@ -71,7 +71,7 @@ namespace HIMS.Server.Controllers
         [Authorize(Roles = "admin")]
         public async Task<ActionResult> Register(RegisterViewModel viewModel)
         {
-            await SetInitialDataAsync();
+            await SetInitialDataAsync().ConfigureAwait(false);
             if (ModelState.IsValid)
             {
                 var userDto = new UserDTO
@@ -82,7 +82,7 @@ namespace HIMS.Server.Controllers
                     Name = viewModel.Name,
                     Role = "user"
                 };
-                OperationDetails operationDetails = await _userService.Create(userDto);
+                OperationDetails operationDetails = await _userService.Create(userDto).ConfigureAwait(false);
                 if (operationDetails.Succedeed)
                     return View("SuccessRegister");
                 else
@@ -90,6 +90,7 @@ namespace HIMS.Server.Controllers
             }
             return View(viewModel);
         }
+
         private async Task SetInitialDataAsync()
         {
             await _userService.SetInitialData(new UserDTO
@@ -100,7 +101,7 @@ namespace HIMS.Server.Controllers
                 Name = "Alex",
                 Address = "Revoljucionnaja 11-301",
                 Role = "admin",
-            }, new List<string> { "user", "admin" });
+            }, new List<string> { "user", "admin" }).ConfigureAwait(false);
         }
     }
 }

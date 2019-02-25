@@ -14,8 +14,8 @@ namespace HIMS.BL.Services
 {
     public class SampleService : ISampleService
     {
-        private IUnitOfWork Database { get; set; }
-        private IProcedureManager Pm { get; set; }
+        private IUnitOfWork Database { get; }
+        private IProcedureManager Pm { get; }
 
         public SampleService(IUnitOfWork uow, IProcedureManager pm)
         {
