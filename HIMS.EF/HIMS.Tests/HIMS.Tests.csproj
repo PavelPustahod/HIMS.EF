@@ -52,7 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestSampleController" />
+    <Compile Include="TestSampleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
