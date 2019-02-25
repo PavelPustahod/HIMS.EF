@@ -60,14 +60,20 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\UserSecurityManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IdentityUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HIMS.EF.DAL.Data\HIMS.DAL.Data.csproj">
+      <Project>{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}</Project>
+      <Name>HIMS.DAL.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

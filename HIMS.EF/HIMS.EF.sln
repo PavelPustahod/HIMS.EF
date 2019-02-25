@@ -3,14 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.EF.DAL.Identity", "HIMS.EF.DAL.Identity\HIMS.EF.DAL.Identity.csproj", "{8625574D-5575-49AF-BE6E-502A319E2C0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.DAL.Identity", "HIMS.EF.DAL.Identity\HIMS.DAL.Identity.csproj", "{8625574D-5575-49AF-BE6E-502A319E2C0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.EF.DAL.Data", "HIMS.EF.DAL.Data\HIMS.EF.DAL.Data.csproj", "{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.DAL.Data", "HIMS.EF.DAL.Data\HIMS.DAL.Data.csproj", "{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B013F3D6-5C64-4EEC-95F0-A110048EDCAA}"
 	ProjectSection(SolutionItems) = preProject
 		README.txt = README.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HIMS.Server", "HIMS.Server\HIMS.Server.csproj", "{8C2B13AC-4876-4C7D-969F-01D8F37BB176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAC997AA-EBE6-4E9F-B4FD-C3CBBD6DA146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C2B13AC-4876-4C7D-969F-01D8F37BB176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C2B13AC-4876-4C7D-969F-01D8F37BB176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C2B13AC-4876-4C7D-969F-01D8F37BB176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C2B13AC-4876-4C7D-969F-01D8F37BB176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
