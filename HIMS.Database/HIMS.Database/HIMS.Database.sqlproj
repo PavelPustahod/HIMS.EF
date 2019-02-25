@@ -70,9 +70,12 @@
     <Build Include="Tables\Direction.sql" />
     <Build Include="Tables\UserTask.sql" />
     <Build Include="Views\vUserProfile.sql" />
+    <None Include="ResetIdetity.sql" />
+    <None Include="SeedData\UserProfileInitialData.sql" />
+    <None Include="SeedData\DirectionInitialData.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="SeedData\InitialData.sql" />
+    <PostDeploy Include="SeedData\SampleInitialData.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HIMS.Database.refactorlog" />
