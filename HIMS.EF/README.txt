@@ -5,3 +5,8 @@ https://www.dustinhorne.com/post/2016/12/10/views-and-incorrect-data-in-entity-f
 
 2) Good tutorial in ENGLISH to read about EF
 http://www.entityframeworktutorial.net
+
+3) If you add new entity, procedure, view and etc., you need:
+	a) run script to add it to database on your local server
+	b) save script in HIMS.Database solution in an appropriate folder
+	c) update your HIMS.edmx model from database
