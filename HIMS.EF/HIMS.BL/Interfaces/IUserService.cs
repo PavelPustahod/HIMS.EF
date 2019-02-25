@@ -1,4 +1,5 @@
-﻿using HIMS.BL.Models;
+﻿using HIMS.BL.Infrastructure;
+using HIMS.BL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

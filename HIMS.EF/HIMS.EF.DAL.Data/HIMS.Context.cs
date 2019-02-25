@@ -14,31 +14,35 @@ namespace HIMS.EF.DAL.Data
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+
     public partial class HIMSDbContext : DbContext
     {
         public HIMSDbContext()
             : base("name=HIMSDbContext")
         {
         }
-    
+
+        public HIMSDbContext(string connectionString) : base(connectionString)
+        {
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Direction> Directions { get; set; }
         public virtual DbSet<Sample> Samples { get; set; }
         public virtual DbSet<UserTask> UserTasks { get; set; }
         public virtual DbSet<vUserProfile> vUserProfiles { get; set; }
-    
+
         public virtual int SampleEntriesAmount(Nullable<bool> isAdmin, ObjectParameter result)
         {
             var isAdminParameter = isAdmin.HasValue ?
                 new ObjectParameter("isAdmin", isAdmin) :
                 new ObjectParameter("isAdmin", typeof(bool));
-    
+
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SampleEntriesAmount", isAdminParameter, result);
         }
     }
