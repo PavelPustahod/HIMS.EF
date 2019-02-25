@@ -1,33 +1,49 @@
-﻿@model IEnumerable<HIMS.Server.Models.SamplesListViewModel>
+﻿@model HIMS.Server.Models.SamplesListViewModel
 
-@{
-    ViewBag.Title = "Index";
-}
+    @{
+        ViewBag.Title = "Sample Page";
+    }
 
-<h2>Index</h2>
+    <h2>Sample CRUD Grid</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SamplesAmount)
-        </th>
-        <th></th>
-    </tr>
+    <p>The total amount of records is <b>@Model.SamplesAmount</b></p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SamplesAmount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-success" })
+    </p>
 
-</table>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Samples)
+            {
+                <tr>
+                    <th scope="row">
+                        @Html.DisplayFor(modelItem => item.SampleId)
+                    </th>
+                    <td>
+                        @Html.ActionLink(item.Name, "Details", new { id = item.SampleId })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.SampleId }, new { @class = "btn btn-default" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.SampleId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+    </table>
