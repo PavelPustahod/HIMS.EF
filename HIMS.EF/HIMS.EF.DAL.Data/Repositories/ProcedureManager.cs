@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HIMS.EF.DAL.Data.Repositories
 {
-    class ProcedureManager : IProcedureManager
+    public class ProcedureManager : IProcedureManager
     {
         private HIMSDbContext _db;
 

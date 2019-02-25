@@ -9,7 +9,7 @@ using System.Web;
 
 namespace HIMS.Server.utils
 {
-    public class AutomapperConfig
+    public static class AutomapperConfig
     {
         public static void Initialize()
         {
