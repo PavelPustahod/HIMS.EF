@@ -14,4 +14,7 @@ http://www.entityframeworktutorial.net
 	b) save script in HIMS.Database solution in an appropriate folder
 	c) update your HIMS.edmx model from your database
 	d) commit your changes
-	
+
+4) Git workflow (Need to add)
+
+5) How to work with procedures in EF? (Need to add)
