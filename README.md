@@ -14,4 +14,9 @@ http://www.entityframeworktutorial.net
 	b) save script in HIMS.Database solution in an appropriate folder
 	c) update your HIMS.edmx model from your database
 	d) commit your changes
-	
+
+4) How to enable sa user in MSSql
+https://www.youtube.com/watch?v=Ckb-YoHsuOE
+
+5) How to map stored procedure in EF
+https://stackoverflow.com/questions/43821023/stored-procedure-in-entity-framework-database-first-approach
