@@ -15,6 +15,25 @@ http://www.entityframeworktutorial.net
 	c) update your HIMS.edmx model from your database
 	d) commit your changes
 
-4) Git workflow (Need to add)
+4) Git workflow
+	4.1 name of branch: <your-name><feature>
+
+	4.2
+	git checkout dev
+	git pull (resolve conflicts if need)
+	
+	git checkout -b <your-branch-name>
+	git status
+	git add . / git add "<name-of-file>"
+	git commit -m "<your-commit>"
+	git push origin <your-branch-name>
+	
+	git checkout dev
+	git pull (resolve conflicts if need)
+	git checkout <your-branch>
+	
+	git merge <your-branch> dev
+	
+	https://rogerdudler.github.io/git-guide/ - refresh you git knowledges step by step
 
 5) How to work with procedures in EF? (Need to add)
