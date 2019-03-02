@@ -36,7 +36,6 @@ git branch -d <your-branch>
 	
 git push
 ```
-	
 - https://rogerdudler.github.io/git-guide/ - refresh you git knowledges step by step
 
 4) ### How to enable sa user in MSSql
