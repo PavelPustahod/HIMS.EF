@@ -33,6 +33,8 @@ http://www.entityframeworktutorial.net
 	git merge <your-branch> dev
 	git branch -d <your-branch>
 	
+	git push
+	
 	https://rogerdudler.github.io/git-guide/ - refresh you git knowledges step by step
 
 5) How to work with procedures in EF? (Need to add)
