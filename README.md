@@ -30,9 +30,8 @@ http://www.entityframeworktutorial.net
 	
 	git checkout dev
 	git pull (resolve conflicts if need)
-	git checkout <your-branch>
-	
 	git merge <your-branch> dev
+	git branch -d <your-branch>
 	
 	https://rogerdudler.github.io/git-guide/ - refresh you git knowledges step by step
 
