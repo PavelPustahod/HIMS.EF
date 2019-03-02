@@ -19,10 +19,10 @@ namespace HIMS.EF.DAL.Data.Repositories
 
         public int GetSampleEntriesAmount(bool isAdmin)
         {
-            ObjectParameter result = new ObjectParameter("result", typeof(int));
-            int res = 0;
-            //res = _himsDbContext.SampleEntriesAmount(isAdmin, ref result);
-            return res;
+            //ObjectParameter result = new ObjectParameter("result", typeof(int));
+            int result = 0;
+            _himsDbContext.GetSampleEntriesAmount(isAdmin, ref result);
+            return result;
         }
     }
 }
