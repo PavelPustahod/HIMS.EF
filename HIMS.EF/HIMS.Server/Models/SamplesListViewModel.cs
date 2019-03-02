@@ -8,6 +8,6 @@ namespace HIMS.Server.Models
     public class SamplesListViewModel
     {
         public IEnumerable<SampleViewModel> Samples { get; set; }
-        public int SamplesAmount { get; set; }
+        public int? SamplesAmount { get; set; }
     }
 }

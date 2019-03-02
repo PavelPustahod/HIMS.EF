@@ -9,7 +9,7 @@ namespace HIMS.Server.utils
     {
         public static bool IsAdmin
         {
-            get { return HttpContext.Current.GetUserObject().IsAdmin; }
+            get { return HttpContext.Current.GetUserObject()?.IsAdmin == true; }
         }
 
         public static UserObject GetUserObject(this HttpContext current)
