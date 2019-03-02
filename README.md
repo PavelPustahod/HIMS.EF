@@ -26,7 +26,7 @@ http://www.entityframeworktutorial.net
 	git status
 	git add . / git add "<name-of-file>"
 	git commit -m "<your-commit>"
-	git push origin <your-branch-name>
+	git push -u origin <your-branch-name>  // -u or --set-upstream
 	
 	git checkout dev
 	git pull (resolve conflicts if need)
