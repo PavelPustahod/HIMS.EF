@@ -36,7 +36,10 @@ git branch -d <your-branch>
 	
 git push
 ```
-	
 - https://rogerdudler.github.io/git-guide/ - refresh you git knowledges step by step
 
-5) ### How to work with procedures in EF? (Need to add)
+4) How to enable sa user in MSSql
+https://www.youtube.com/watch?v=Ckb-YoHsuOE
+
+5) ### How to map stored procedure in EF
+https://stackoverflow.com/questions/43821023/stored-procedure-in-entity-framework-database-first-approach

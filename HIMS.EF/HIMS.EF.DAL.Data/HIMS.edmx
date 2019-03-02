@@ -49,19 +49,9 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="StateId" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'HIMS.dbo.vUserProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vUserProfile">
           <Key>
             <PropertyRef Name="UserId" />
-            
-            
-            
-            
-            
-            
-            
-            
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="51" Nullable="false" />
@@ -172,7 +162,7 @@ warning 6002: The table/view 'HIMS.dbo.vUserProfile' does not have a primary key
             <End Role="Direction" EntitySet="Directions" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
-          <FunctionImport Name="SampleEntriesAmount">
+          <FunctionImport Name="GetSampleEntriesAmount" ReturnType="Collection(Int32)">
             <Parameter Name="isAdmin" Mode="In" Type="Boolean" />
             <Parameter Name="result" Mode="InOut" Type="Int32" />
           </FunctionImport>
@@ -292,7 +282,7 @@ warning 6002: The table/view 'HIMS.dbo.vUserProfile' does not have a primary key
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SampleEntriesAmount" FunctionName="HIMSModel.Store.SampleEntriesAmount" />
+          <FunctionImportMapping FunctionImportName="GetSampleEntriesAmount" FunctionName="HIMSModel.Store.SampleEntriesAmount" />
           <EntitySetMapping Name="Samples">
             <EntityTypeMapping TypeName="HIMSModel.Sample">
               <MappingFragment StoreEntitySet="Sample">
